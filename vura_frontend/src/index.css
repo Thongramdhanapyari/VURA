@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  /* This replaces the 'extend' section from your old config */
+  --radius-4xl: 2.5rem;
+  
+  /* Brand colors for the Vura UI */
+  --color-vura-cyan: #22d3ee;
+  --color-vura-dark: #0f172a;
+
+  /* Adding animations for your DetailDrawer and AddProduct components */
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
