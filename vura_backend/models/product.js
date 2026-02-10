@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     cost: { 
         type: Number, 
         required: false, 
-        default: 0 
+        default: 0 //if the cost was not enter the caculation might crash initializing won't crash 
     }, 
     price: { 
         type: Number, 
@@ -32,10 +32,10 @@ const productSchema = new mongoose.Schema({
         type: String, 
         default: "available" 
     },
-    // This links the product to the specific user who created it
+    // This links the product to the specific user who created it --unique id
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
+        ref: 'User', // it create a relationship betweeen user and product
         required: true 
     }
 }, { timestamps: true });

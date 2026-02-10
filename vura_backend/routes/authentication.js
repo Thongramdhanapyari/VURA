@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
             // This uses the secret you defined in your .env
             const token = jwt.encode(payload, process.env.JWT_SECRET);
             
-            // 3. IMPORTANT: Send back the 'user' object wrapper so App.jsx doesn't fail
+            // Send back the 'user' object wrapper so App.jsx doesn't fail
             res.status(200).json({ 
                 token: token,
                 user: {

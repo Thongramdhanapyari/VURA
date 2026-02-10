@@ -12,7 +12,7 @@ setError("");
 // Determine which API route to hit
 const endpoint = isRegister ? "register" : "login";
 // Add this at the top of the file (outside the component)
-const API_URL = "http://localhost:5000";
+const API_URL =process.env.REACT_APP_API_URL || "http://localhost:5000";
 
     try {
       const response = await fetch(`${API_URL}/api/authentication/${endpoint}`, {

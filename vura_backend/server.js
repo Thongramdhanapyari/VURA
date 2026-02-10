@@ -3,9 +3,14 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const Product = require('./models/product');
 const authRoutes = require('./routes/authentication');
+const jwt = require('jwt-simple');
 require('dotenv').config();
 
 const app = express();
+// --- DATABASE CONNECTION ---
+const mongoURI = process.env.MONGODB_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
+cle
 
 // --- MIDDLEWARE ---
 app.use(cors());
@@ -14,9 +19,10 @@ app.use(express.json());
 // --- ROUTES ---
 app.use('/api/authentication', authRoutes);
 
-// --- DATABASE CONNECTION ---
-// SECURED: It prioritizes the .env variable. 
-const mongoURI = process.env.MONGODB_URI;
+
+if (!JWT_SECRET) {
+  console.warn("⚠️ WARNING: JWT_SECRET is not defined in .env. Auth might fail.");
+}
 
 if (!mongoURI) {
   console.error("❌ ERROR: MONGODB_URI is not defined in .env file.");
@@ -169,4 +175,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0' , () => console.log(`🚀 Server running on port ${PORT}`));
