@@ -10,7 +10,6 @@ const app = express();
 // --- DATABASE CONNECTION ---
 const mongoURI = process.env.MONGODB_URI;
 const JWT_SECRET = process.env.JWT_SECRET;
-cle
 
 // --- MIDDLEWARE ---
 app.use(cors());

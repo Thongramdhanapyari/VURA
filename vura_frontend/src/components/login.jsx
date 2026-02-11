@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Login = ({ onLogin, onClose }) => {
-const [isRegister, setIsRegister] = useState(false); // Toggle state
+const [isRegister,setIsRegister] = useState(false);
 const [formData, setFormData] = useState({ username: "", password: "" });
 const [error, setError] = useState("");
 
@@ -9,11 +9,8 @@ const handleSubmit = async (e) => {
 e.preventDefault();
 setError("");
 
-// Determine which API route to hit
 const endpoint = isRegister ? "register" : "login";
-// Add this at the top of the file (outside the component)
-const API_URL =process.env.REACT_APP_API_URL || "http://localhost:5000";
-
+const API_URL =import.meta.env.VITE_APP_API_URL || "http://localhost:5000";
     try {
       const response = await fetch(`${API_URL}/api/authentication/${endpoint}`, {
         method: "POST",
@@ -29,6 +26,7 @@ const API_URL =process.env.REACT_APP_API_URL || "http://localhost:5000";
           alert("Registration successful! Please login.");
           setIsRegister(false);
         } else {
+          localStorage.setItem("vura_token",data.token);
           // If logging in, pass user data up to App.js
           onLogin(data.user);
         }
